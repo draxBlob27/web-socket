@@ -1,0 +1,10 @@
+source_set("websocket") {
+  sources = [
+    "websocket_client.cpp",
+    "websocket_client.h",
+  ]
+  deps = [
+    "//src/util",
+    "//third_party/boost:boost",
+  ]
+}

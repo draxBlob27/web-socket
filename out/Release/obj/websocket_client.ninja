@@ -1,0 +1,19 @@
+defines =
+include_dirs =
+cflags = -std=c++17 -g -O0
+cflags_cc =
+root_out_dir = .
+target_out_dir = obj
+target_output_name = websocket_client
+
+build obj/src/websocket_client.main.o: cxx ../../src/main.cpp
+  source_file_part = main.cpp
+  source_name_part = main
+
+build ./websocket_client: link obj/src/websocket_client.main.o obj/src/cli/cli.command_handler.o obj/src/websocket/websocket.websocket_client.o obj/src/util/util.a || phony/src/cli/cli phony/src/websocket/websocket
+  ldflags = -L/opt/homebrew/opt/boost/lib -L/opt/homebrew/opt/openssl@3/lib -L/opt/homebrew/opt/boost/lib
+  libs = -lboost_system -lssl -lcrypto
+  frameworks =
+  swiftmodules =
+  output_extension =
+  output_dir =

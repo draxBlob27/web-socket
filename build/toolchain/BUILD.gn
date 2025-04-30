@@ -1,0 +1,61 @@
+toolchain("gcc") {
+  tool("cc") {
+    command = "gcc {{cflags}} {{defines}} {{include_dirs}} -c {{source}} -o {{output}}"
+    description = "CC {{source}}"
+    outputs = ["{{source_out_dir}}/{{target_output_name}}.{{source_name_part}}.o"]
+  }
+  tool("cxx") {
+    command = "g++ {{cflags}} {{cflags_cc}} {{defines}} {{include_dirs}} -c {{source}} -o {{output}}"
+    description = "CXX {{source}}"
+    outputs = ["{{source_out_dir}}/{{target_output_name}}.{{source_name_part}}.o"]
+  }
+  tool("alink") {
+    command = "ar rcs {{output}} {{inputs}}"
+    description = "AR {{target_output_name}}{{output_extension}}"
+    outputs = ["{{target_out_dir}}/{{target_output_name}}{{output_extension}}"]
+    default_output_extension = ".a"
+  }
+  tool("solink") {
+    command = "g++ -shared {{ldflags}} -L/opt/homebrew/opt/openssl@3/lib -o {{output}} {{inputs}} {{libs}}"
+    description = "SOLINK {{target_output_name}}{{output_extension}}"
+    outputs = ["{{root_out_dir}}/lib{{target_output_name}}{{output_extension}}"]
+    default_output_extension = ".so"
+  }
+  tool("link") {
+    command = "g++ {{ldflags}} -L/opt/homebrew/opt/openssl@3/lib -o {{output}} {{inputs}} {{libs}}"
+    description = "LINK {{target_output_name}}{{output_extension}}"
+    outputs = ["{{root_out_dir}}/{{target_output_name}}{{output_extension}}"]
+    default_output_extension = ""
+  }
+}
+
+toolchain("clang") {
+  tool("cc") {
+    command = "clang {{cflags}} {{defines}} {{include_dirs}} -c {{source}} -o {{output}}"
+    description = "CC {{source}}"
+    outputs = ["{{source_out_dir}}/{{target_output_name}}.{{source_name_part}}.o"]
+  }
+  tool("cxx") {
+    command = "clang++ {{cflags}} {{cflags_cc}} {{defines}} {{include_dirs}} -c {{source}} -o {{output}}"
+    description = "CXX {{source}}"
+    outputs = ["{{source_out_dir}}/{{target_output_name}}.{{source_name_part}}.o"]
+  }
+  tool("alink") {
+    command = "ar rcs {{output}} {{inputs}}"
+    description = "AR {{target_output_name}}{{output_extension}}"
+    outputs = ["{{target_out_dir}}/{{target_output_name}}{{output_extension}}"]
+    default_output_extension = ".a"
+  }
+  tool("solink") {
+    command = "clang++ -shared {{ldflags}} -L/opt/homebrew/opt/openssl@3/lib -o {{output}} {{inputs}} {{libs}}"
+    description = "SOLINK {{target_output_name}}{{output_extension}}"
+    outputs = ["{{root_out_dir}}/lib{{target_output_name}}{{output_extension}}"]
+    default_output_extension = ".so"
+  }
+  tool("link") {
+    command = "clang++ {{ldflags}} -L/opt/homebrew/opt/openssl@3/lib -o {{output}} {{inputs}} {{libs}}"
+    description = "LINK {{target_output_name}}{{output_extension}}"
+    outputs = ["{{root_out_dir}}/{{target_output_name}}{{output_extension}}"]
+    default_output_extension = ""
+  }
+}

@@ -1,0 +1,10 @@
+source_set("cli") {
+  sources = [
+    "command_handler.cpp",
+    "command_handler.h",
+  ]
+  deps = [
+    "//src/websocket",
+    "//src/util",
+  ]
+}

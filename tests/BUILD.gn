@@ -1,0 +1,28 @@
+executable("websocket_client_tests") {
+  testonly = true
+  sources = [ "websocket_test.cpp" ]
+  deps = [
+    "//src/websocket",
+    "//src/util",
+    "//third_party/boost:boost",
+  ]
+  include_dirs = [ "/opt/homebrew/opt/googletest/include" ]
+  libs = [
+    "/opt/homebrew/opt/googletest/lib/libgtest.a",
+    "/opt/homebrew/opt/googletest/lib/libgtest_main.a",
+    "boost_system",
+    "ssl",
+    "crypto",
+  ]
+  ldflags = [
+    "-L/opt/homebrew/opt/boost/lib",
+    "-L/opt/homebrew/opt/openssl@3/lib",
+  ]
+  cflags_cc = [ "-std=c++17" ]
+  configs += [ ":use_clang" ]
+}
+
+config("use_clang") {
+  cflags = [ "-stdlib=libc++" ]
+  ldflags = [ "-stdlib=libc++" ]
+}

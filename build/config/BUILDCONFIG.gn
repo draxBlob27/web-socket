@@ -1,0 +1,38 @@
+declare_args() {
+  is_debug = true
+  use_clang = true  # Add this to switch toolchains
+}
+
+set_defaults("executable") {
+  configs = [
+    "//build/config:default",
+    "//build/config:compiler_flags",
+  ]
+}
+
+set_defaults("static_library") {
+  configs = [
+    "//build/config:default",
+    "//build/config:compiler_flags",
+  ]
+}
+
+set_defaults("source_set") {
+  configs = [
+    "//build/config:default",
+    "//build/config:compiler_flags",
+  ]
+}
+
+if (use_clang) {
+  set_default_toolchain("//build/toolchain:clang")
+} else {
+  set_default_toolchain("//build/toolchain:gcc")
+}
+
+if (target_os == "") {
+  target_os = host_os
+}
+if (target_cpu == "") {
+  target_cpu = host_cpu
+}

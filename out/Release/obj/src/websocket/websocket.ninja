@@ -1,0 +1,13 @@
+defines =
+include_dirs =
+cflags = -std=c++17 -g -O0
+cflags_cc =
+root_out_dir = .
+target_out_dir = obj/src/websocket
+target_output_name = websocket
+
+build obj/src/websocket/websocket.websocket_client.o: cxx ../../src/websocket/websocket_client.cpp
+  source_file_part = websocket_client.cpp
+  source_name_part = websocket_client
+
+build phony/src/websocket/websocket: phony obj/src/websocket/websocket.websocket_client.o || obj/src/util/util.a

@@ -1,0 +1,19 @@
+defines =
+include_dirs = -I/opt/homebrew/opt/googletest/include
+cflags = -std=c++17 -g -O0 -stdlib=libc++
+cflags_cc = -std=c++17
+root_out_dir = .
+target_out_dir = obj/tests
+target_output_name = websocket_client_tests
+
+build obj/tests/websocket_client_tests.websocket_test.o: cxx ../../tests/websocket_test.cpp
+  source_file_part = websocket_test.cpp
+  source_name_part = websocket_test
+
+build ./websocket_client_tests: link obj/tests/websocket_client_tests.websocket_test.o obj/src/websocket/websocket.websocket_client.o obj/src/util/util.a | ../../../../../../opt/homebrew/opt/googletest/lib/libgtest.a ../../../../../../opt/homebrew/opt/googletest/lib/libgtest_main.a || phony/src/websocket/websocket
+  ldflags = -L/opt/homebrew/opt/boost/lib -L/opt/homebrew/opt/openssl@3/lib -stdlib=libc++ -L/opt/homebrew/opt/boost/lib
+  libs = /opt/homebrew/opt/googletest/lib/libgtest.a /opt/homebrew/opt/googletest/lib/libgtest_main.a -lboost_system -lssl -lcrypto
+  frameworks =
+  swiftmodules =
+  output_extension =
+  output_dir =

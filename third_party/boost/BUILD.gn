@@ -1,0 +1,5 @@
+source_set("boost") {
+  include_dirs = [ "/opt/homebrew/opt/boost/include" ]  # Boost headers
+  lib_dirs = [ "/opt/homebrew/opt/boost/lib" ]          # Boost libraries
+  libs = [ "boost_system" ]                             # Link libboost_system
+}

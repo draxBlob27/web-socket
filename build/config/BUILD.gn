@@ -1,0 +1,14 @@
+# Common configuration for all targets
+config("default") {
+  cflags = [ "-std=c++17" ]
+  ldflags = []
+}
+
+# Debug vs Release flags
+config("compiler_flags") {
+  if (is_debug) {
+    cflags = [ "-g", "-O0" ]  # Debug: symbols, no optimization
+  } else {
+    cflags = [ "-O2" ]        # Release: optimization
+  }
+}

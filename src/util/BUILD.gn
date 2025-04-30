@@ -1,0 +1,7 @@
+static_library("util") {
+  sources = [
+    "util.cpp",
+    "util.h",
+    "root_certificates.hpp",
+  ]
+}

@@ -1,0 +1,7 @@
+defines =
+include_dirs = -I/opt/homebrew/opt/boost/include
+root_out_dir = .
+target_out_dir = obj/third_party/boost
+target_output_name = boost
+
+
